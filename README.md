@@ -1,4 +1,4 @@
-# Dark SaaS Landing Page Template
+# Dark-themed Landing Page Template
 
 This project is a starter template for a dark-themed SaaS landing page.
 
