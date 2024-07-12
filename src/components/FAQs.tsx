@@ -1,4 +1,5 @@
 'use client';
+import { motion, AnimatePresence } from 'framer-motion';
 import PlusIcon from '../assets/icons/plus.svg';
 import MinusIcon from '../assets/icons/minus.svg';
 import React from 'react';
@@ -45,14 +46,21 @@ const AccordionItem = ({
         <span className="flex-1 text-lg font-bold">{question}</span>
         {isOpen ? <MinusIcon /> : <PlusIcon />}
       </div>
-      <div
-        className={clsx('mt-4 text-white/70', {
-          hidden: !isOpen,
-          '': isOpen === true,
-        })}
-      >
-        {answer}
-      </div>
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            className={clsx({
+              hidden: !isOpen,
+              '': isOpen === true,
+            })}
+            initial={{ opacity: 0, height: 0, marginTop: 0 }}
+            animate={{ opacity: 1, height: 'auto', marginTop: '16px' }}
+            exit={{ opacity: 0, height: 0, marginTop: 0 }}
+          >
+            {answer}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };
